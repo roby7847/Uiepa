@@ -14,12 +14,12 @@ body {
 
 /* LOGIN */
 .login {
-  max-width: 320px;
+  max-width: 340px;
   margin: 120px auto;
   background: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
   text-align: center;
 }
 
@@ -29,20 +29,25 @@ body {
 
 .login input {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
+  padding: 12px;
+  margin-bottom: 14px;
   border-radius: 8px;
   border: 1px solid #ccc;
 }
 
 .login button {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background: #6c5ce7;
   color: white;
   border: none;
   border-radius: 8px;
+  font-size: 15px;
   cursor: pointer;
+}
+
+.login button:hover {
+  background: #5a4bdc;
 }
 
 .error {
@@ -68,6 +73,7 @@ body {
 .menu {
   display: flex;
   gap: 25px;
+  align-items: center;
 }
 
 .menu-item {
@@ -75,21 +81,21 @@ body {
   cursor: pointer;
 }
 
-.menu-item:hover .dropdown {
-  display: block;
-}
-
 /* DROPDOWN */
 .dropdown {
   display: none;
   position: absolute;
-  top: 35px;
+  top: 38px;
   background: white;
   color: black;
   min-width: 180px;
   border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   overflow: hidden;
+}
+
+.menu-item:hover .dropdown {
+  display: block;
 }
 
 .dropdown a {
@@ -110,6 +116,7 @@ body {
 .logout {
   cursor: pointer;
   color: #fdcb6e;
+  font-weight: bold;
 }
 </style>
 </head>
@@ -202,15 +209,23 @@ createApp({
   },
   methods: {
     login() {
+      this.error = '';
+
+      // ADMIN
       if (this.usuario === 'roberto' && this.password === 'orochimaru1473#') {
         this.logueado = true;
         this.rol = 'admin';
-      } else if (this.usuario === 'roberto' && this.password === 'dragon43%$') {
+        return;
+      }
+
+      // USER
+      if (this.usuario === 'roberto' && this.password === 'dragon43%$') {
         this.logueado = true;
         this.rol = 'user';
-      } else {
-        this.error = 'Usuario o contraseña incorrectos';
+        return;
       }
+
+      this.error = 'Usuario o contraseña incorrectos';
     },
     logout() {
       this.logueado = false;
@@ -225,5 +240,6 @@ createApp({
 
 </body>
 </html>
+
 
 
